@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct DiaryListViewCell: View {
-    let exercise: Exercise
+    @Binding var exercise: Exercise
+    
+    @State private var isShowingEditView = false
     
     var body: some View {
         HStack {
@@ -28,11 +30,17 @@ struct DiaryListViewCell: View {
                 Text("lbs")
             }
         }
+        .onTapGesture {
+            isShowingEditView = true
+        }
+        .fullScreenCover(isPresented: $isShowingEditView) {
+            ExerciseEditView(isShowingEditView: $isShowingEditView, exercise: $exercise)
+        }
     }
 }
 
 struct DiaryListViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListViewCell(exercise: MockData.sampleExercise1)
+        DiaryListViewCell(exercise: .constant(MockData.sampleExercise1))
     }
 }

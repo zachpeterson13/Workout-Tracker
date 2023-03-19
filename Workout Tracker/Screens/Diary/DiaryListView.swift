@@ -10,8 +10,6 @@ import SwiftUI
 struct DiaryListView: View {
     @State private var exercises: [Exercise] = MockData.exercises
     @State private var isShowingAddView = false
-    @State private var isShowingEditView = false
-    @State private var selectedIndex = 0
     
     var body: some View {
         VStack {
@@ -36,12 +34,8 @@ struct DiaryListView: View {
             }
             
             List {
-                ForEach(0..<exercises.count, id: \.self) { index in
-                    DiaryListViewCell(exercise: exercises[index])
-                        .onTapGesture {
-                            selectedIndex = index
-                            isShowingEditView = true
-                        }
+                ForEach($exercises) { $exercise in
+                    DiaryListViewCell(exercise: $exercise)
                 }
                 .onDelete { indexSet in
                     exercises.remove(atOffsets: indexSet)
@@ -57,10 +51,7 @@ struct DiaryListView: View {
             }
         }
         .fullScreenCover(isPresented: $isShowingAddView) {
-            ExerciseAddView(exercises: $exercises, isShowingAddView: $isShowingAddView)
-        }
-        .fullScreenCover(isPresented: $isShowingEditView) {
-            ExerciseEditView(exercise: $exercises[selectedIndex], isShowingEditView: $isShowingEditView)
+            ExerciseAddView(isShowingAddView: $isShowingAddView, exercises: $exercises)
         }
     }
 }

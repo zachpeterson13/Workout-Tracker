@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ExerciseEditView: View {
-    @Binding var exercise: Exercise
     @Binding var isShowingEditView: Bool
+    @Binding var exercise: Exercise
     
     var body: some View {
         VStack {
@@ -62,6 +62,6 @@ struct ExerciseEditView: View {
 
 struct DiaryDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseEditView(exercise: .constant(MockData.exercises[0]), isShowingEditView: .constant(true))
+        ExerciseEditView(isShowingEditView: .constant(false), exercise: .constant(MockData.sampleExercise1))
     }
 }

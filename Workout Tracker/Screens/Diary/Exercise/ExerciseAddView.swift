@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ExerciseAddView: View {
-    @Binding var exercises: [Exercise]
     @Binding var isShowingAddView: Bool
+    @Binding var exercises: [Exercise]
     
     let temp = ["Squat", "Bench Press", "Rows"]
     
@@ -103,7 +103,7 @@ struct ExerciseAddView: View {
 
 struct DiaryAddView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseAddView(exercises: .constant(MockData.exercises), isShowingAddView: .constant(true))
+        ExerciseAddView(isShowingAddView: .constant(false), exercises: .constant(MockData.exercises))
     }
 }
 
