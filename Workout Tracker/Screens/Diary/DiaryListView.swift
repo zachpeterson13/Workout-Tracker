@@ -32,6 +32,7 @@ struct DiaryListView: View {
                     Image(systemName: "arrow.right")
                 }
             }
+            .padding(8)
             
             List {
                 ForEach($exercises) { $exercise in
@@ -43,6 +44,7 @@ struct DiaryListView: View {
             }
             
             Button {
+                exercises.append(Exercise(id: UUID(), name: "Unnamed Exercise", sets: []))
                 isShowingAddView = true
             } label: {
                 Image(systemName: "plus")
@@ -51,7 +53,7 @@ struct DiaryListView: View {
             }
         }
         .fullScreenCover(isPresented: $isShowingAddView) {
-            ExerciseAddView(isShowingAddView: $isShowingAddView, exercises: $exercises)
+            ExerciseListView(isAdd: true, isShowing: $isShowingAddView, exercises: $exercises, exercise: $exercises.last!)
         }
     }
 }

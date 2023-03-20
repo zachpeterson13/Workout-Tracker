@@ -13,28 +13,39 @@ struct DiaryListViewCell: View {
     @State private var isShowingEditView = false
     
     var body: some View {
-        HStack {
-            Image(systemName: "dumbbell")
-            
+        HStack(spacing: 0) {
             VStack(alignment: .leading) {
                 Text(exercise.name)
+                    .font(.title3)
+                    .fontWeight(.bold)
                 
-                Text("\(exercise.sets.count) Sets")
+                ForEach(exercise.sets) { set in
+                    Text("\(set.reps) x \(set.weight) lbs")
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                        .foregroundColor(Color(.gray))
+                }
             }
             
             Spacer()
             
             VStack(alignment: .trailing) {
-                Text("\(exercise.sets.first?.weight ?? 0)")
+                Text("\(exercise.averageWeight)")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                
                 
                 Text("lbs")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color(.gray))
             }
         }
         .onTapGesture {
             isShowingEditView = true
         }
         .fullScreenCover(isPresented: $isShowingEditView) {
-            ExerciseEditView(isShowingEditView: $isShowingEditView, exercise: $exercise)
+            ExerciseListView(isAdd: false, isShowing: $isShowingEditView, exercises: .constant([]), exercise: $exercise)
         }
     }
 }
