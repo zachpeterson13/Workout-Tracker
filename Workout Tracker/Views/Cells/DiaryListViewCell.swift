@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DiaryListViewCell: View {
     @Binding var exercise: Exercise
+    @Binding var exercises: [Exercise]
     
     @State private var isShowingEditView = false
     
@@ -45,13 +46,13 @@ struct DiaryListViewCell: View {
             isShowingEditView = true
         }
         .fullScreenCover(isPresented: $isShowingEditView) {
-            ExerciseListView(isAdd: false, isShowing: $isShowingEditView, exercises: .constant([]), exercise: $exercise)
+            ExerciseListView(isAdd: false, isShowing: $isShowingEditView, exercises: $exercises, exercise: $exercise)
         }
     }
 }
 
 struct DiaryListViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListViewCell(exercise: .constant(MockData.sampleExercise1))
+        DiaryListViewCell(exercise: .constant(MockData.sampleExercise1), exercises: .constant(MockData.exercises))
     }
 }

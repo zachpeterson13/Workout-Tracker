@@ -36,7 +36,7 @@ struct DiaryListView: View {
             
             List {
                 ForEach($exercises) { $exercise in
-                    DiaryListViewCell(exercise: $exercise)
+                    DiaryListViewCell(exercise: $exercise, exercises: $exercises)
                 }
                 .onDelete { indexSet in
                     exercises.remove(atOffsets: indexSet)

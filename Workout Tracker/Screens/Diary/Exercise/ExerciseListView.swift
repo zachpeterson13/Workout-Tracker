@@ -18,28 +18,14 @@ struct ExerciseListView: View {
     var body: some View {
         VStack {
             HStack(alignment: .center) {
-                Spacer()
-                
-                Spacer()
-                
                 Picker("Select Workout Type", selection: $exercise.name) {
                     ForEach(temp, id: \.self) {
-                        Text($0)
+                        Text("\($0)")
                     }
                 }
                 .pickerStyle(.menu)
-                
-                Spacer()
-                
-                Button {
-                    if isAdd {
-                        exercises.removeAll { $0.id == exercise.id }
-                    }
-                    isShowing = false
-                } label: {
-                    XDismissButton()
-                        .padding()
-                }
+                .buttonStyle(.bordered)
+                .tint(.orange)
             }
             
             List {
@@ -52,27 +38,38 @@ struct ExerciseListView: View {
             }
             .listStyle(.insetGrouped)
             
-            HStack {
-                Spacer()
-                
+            VStack {
                 Button {
                     exercise.sets.append(ExerciseSet(id: UUID(), weight: 0, reps: 0))
                 } label: {
-                    Text("New set")
+                    Label("Add Set", systemImage: "plus")
                 }
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+                .tint(.green)
                 
-                Spacer()
-                
-                Button {
-                    isShowing = false
-                } label: {
-                    if isAdd {
-                        Text("Add")
-                    } else {
-                        Text("Save")
+                HStack {
+                    
+                    Button {
+                        isShowing = false
+                    } label: {
+                        Label("Save Exercise", systemImage: "square.and.pencil")
                     }
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.capsule)
+                    .tint(.green)
+                    
+                    
+                    Button {
+                        exercises.removeAll { $0.id == exercise.id }
+                        isShowing = false
+                    } label: {
+                        Label("Delete Exercise", systemImage: "trash")
+                    }
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.capsule)
+                    .tint(.red)
                 }
-                Spacer()
             }
             
             
@@ -84,10 +81,6 @@ struct ExerciseListView: View {
 struct ExerciseListView_Previews: PreviewProvider {
     static var previews: some View {
         ExerciseListView(isAdd: true, isShowing: .constant(true),
-                         exercises: .constant(MockData.exercises),
-                         exercise: .constant(MockData.exercises.first!))
-        
-        ExerciseListView(isAdd: false, isShowing: .constant(true),
                          exercises: .constant(MockData.exercises),
                          exercise: .constant(MockData.exercises.first!))
     }
