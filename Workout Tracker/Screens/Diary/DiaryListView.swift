@@ -47,10 +47,11 @@ struct DiaryListView: View {
                 exercises.append(Exercise(id: UUID(), name: "Unnamed Exercise", sets: []))
                 isShowingAddView = true
             } label: {
-                Image(systemName: "plus")
-                    .imageScale(.large)
-                    .padding()
+                Label("Add Exercise", systemImage: "plus")
             }
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.capsule)
+            .tint(.green)
         }
         .fullScreenCover(isPresented: $isShowingAddView) {
             ExerciseListView(isAdd: true, isShowing: $isShowingAddView, exercises: $exercises, exercise: $exercises.last!)
