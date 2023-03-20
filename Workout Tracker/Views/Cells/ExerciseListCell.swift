@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExerciseListCell: View {
     @Binding var exerciseSet: ExerciseSet
+    @Binding var exercise: Exercise
     
     @State private var isShowingEditView = false
     
@@ -25,7 +26,7 @@ struct ExerciseListCell: View {
         }
         .sheet(isPresented: $isShowingEditView) {
             SetEditView(isShowing: $isShowingEditView,
-                        exercise: .constant(Exercise(id: UUID(), name: "", sets: [])),
+                        exercise: $exercise,
                         set: $exerciseSet)
             .presentationDetents([.medium])
             .presentationDragIndicator(.visible)
@@ -35,6 +36,6 @@ struct ExerciseListCell: View {
 
 struct ExerciseListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseListCell(exerciseSet: .constant(MockData.sampleExercise1.sets.first!))
+        ExerciseListCell(exerciseSet: .constant(MockData.sampleExercise1.sets.first!), exercise: .constant(MockData.sampleExercise1))
     }
 }

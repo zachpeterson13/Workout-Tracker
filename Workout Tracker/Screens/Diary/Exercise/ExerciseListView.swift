@@ -25,12 +25,12 @@ struct ExerciseListView: View {
                 }
                 .pickerStyle(.menu)
                 .buttonStyle(.bordered)
-                .tint(.orange)
+                .tint(.gray)
             }
             
             List {
                 ForEach ($exercise.sets){ $exerciseSet in
-                    ExerciseListCell(exerciseSet: $exerciseSet)
+                    ExerciseListCell(exerciseSet: $exerciseSet, exercise: $exercise)
                 }
                 .onDelete { indexSet in
                     exercise.sets.remove(atOffsets: indexSet)
@@ -46,7 +46,7 @@ struct ExerciseListView: View {
                 }
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.capsule)
-                .tint(.green)
+                .tint(.gray)
                 
                 HStack {
                     

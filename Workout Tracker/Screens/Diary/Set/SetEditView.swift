@@ -22,22 +22,44 @@ struct SetEditView: View {
                 
                 LabelTextField(title: "Weight(lbs)", value: $weight.value)
                 
-                HStack() {
-                    Button {
-                        set.reps = Int(reps.value) ?? 0
-                        set.weight = Int(weight.value) ?? 0
-                        isShowing = false
-                    } label: {
-                        Text("Save")
+                VStack(spacing: 10) {
+                    HStack() {
+                        Button {
+                            set.reps = Int(reps.value) ?? 0
+                            set.weight = Int(weight.value) ?? 0
+                            isShowing = false
+                        } label: {
+                            Label("Save Set", systemImage: "square.and.pencil")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.capsule)
+                        .tint(.green)
+                        
+                        
+                        Button {
+                            exercise.sets.removeAll(where: { $0.id == set.id })
+                            isShowing = false
+                        } label: {
+                            Label("Delete Set", systemImage: "trash")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.capsule)
+                        .tint(.red)
                     }
-                    .padding()
                     
                     Button {
                         isShowing = false
                     } label: {
-                        Text("Cancel")
-                    }.padding()
+                        Label("Cancel", systemImage: "xmark.circle")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.capsule)
+                    .tint(.gray)
                 }
+                .padding()
             }
         }
         .onAppear {
@@ -68,7 +90,7 @@ struct LabelTextField: View {
             TextField(title, text: $value)
                 .keyboardType(.numberPad)
                 .padding(.all)
-                .background(Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0))
+                .background(Color(.quaternarySystemFill))
                 .cornerRadius(5)
         }
         .padding(.horizontal, 15)
