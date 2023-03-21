@@ -12,6 +12,7 @@
 		63552BC929C79C51003189A8 /* ExerciseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BC829C79C51003189A8 /* ExerciseListCell.swift */; };
 		63552BCB29C7A38F003189A8 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BCA29C7A38F003189A8 /* ExerciseListView.swift */; };
 		63552BCE29C7BD97003189A8 /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BCD29C7BD97003189A8 /* NumbersOnly.swift */; };
+		63552BD129C927C4003189A8 /* CalendarDate in Frameworks */ = {isa = PBXBuildFile; productRef = 63552BD029C927C4003189A8 /* CalendarDate */; };
 		63C3606B29C65D880012A6D1 /* Workout_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3606A29C65D880012A6D1 /* Workout_TrackerApp.swift */; };
 		63C3606D29C65D880012A6D1 /* WorkoutTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3606C29C65D880012A6D1 /* WorkoutTabView.swift */; };
 		63C3606F29C65D890012A6D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C3606E29C65D890012A6D1 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63552BD129C927C4003189A8 /* CalendarDate in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +203,9 @@
 			dependencies = (
 			);
 			name = "Workout Tracker";
+			packageProductDependencies = (
+				63552BD029C927C4003189A8 /* CalendarDate */,
+			);
 			productName = "Workout Tracker";
 			productReference = 63C3606729C65D880012A6D1 /* Workout Tracker.app */;
 			productType = "com.apple.product-type.application";
@@ -229,6 +234,9 @@
 				Base,
 			);
 			mainGroup = 63C3605E29C65D880012A6D1;
+			packageReferences = (
+				63552BCF29C927C4003189A8 /* XCRemoteSwiftPackageReference "CalendarDate" */,
+			);
 			productRefGroup = 63C3606829C65D880012A6D1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -467,6 +475,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		63552BCF29C927C4003189A8 /* XCRemoteSwiftPackageReference "CalendarDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ralfebert/CalendarDate";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		63552BD029C927C4003189A8 /* CalendarDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63552BCF29C927C4003189A8 /* XCRemoteSwiftPackageReference "CalendarDate" */;
+			productName = CalendarDate;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 63C3605F29C65D880012A6D1 /* Project object */;
 }

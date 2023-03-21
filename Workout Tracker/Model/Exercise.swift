@@ -6,11 +6,34 @@
 //
 
 import Foundation
+import CalendarDate
+
+final class DataManager {
+    static let shared = DataManager()
+    
+    var data = [CalendarDate.today:MockData.sampleDay]
+    
+    private init() {}
+    
+    func getDay(date: CalendarDate, completed: @escaping (Result<Day, Error>) -> Void) {
+        guard let day = data[date] else {
+            data[date] = Day(id: date, exercises: [])
+            getDay(date: date, completed: completed)
+            return
+        }
+        
+        completed(.success(day))
+        return
+    }
+    
+    func setDay(date: CalendarDate, day: Day) {
+        data[date] = day
+    }
+}
 
 struct Day: Codable, Identifiable {
-    let id: UUID
-    let date: Date
-    let exercises: [Exercise]
+    let id: CalendarDate
+    var exercises: [Exercise]
 }
 
 struct Exercise: Codable, Identifiable {
@@ -34,7 +57,6 @@ struct Exercise: Codable, Identifiable {
         }
     }
 }
-
 
 struct ExerciseSet: Codable, Identifiable {
     let id: UUID
@@ -62,5 +84,5 @@ struct MockData {
     
     static let exercises = [sampleExercise1, sampleExercise2, sampleExercise3, sampleExercise4]
     
-    static let sampleDay = Day(id: UUID(), date: Date(), exercises: exercises)
+    static let sampleDay = Day(id: CalendarDate.today, exercises: exercises)
 }
