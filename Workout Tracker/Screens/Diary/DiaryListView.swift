@@ -11,12 +11,7 @@ import CalendarDate
 struct DiaryListView: View {
     @EnvironmentObject var store: DayStore
     
-    @State private var date: CalendarDate = CalendarDate.today
-    @State private var swiftDate = Date()
-    @State private var day: Day = Day(id: CalendarDate.today, exercises: [])
-    
-    @State private var isShowingAddView = false
-    @State private var isShowingDatePicker = false
+    @StateObject var viewModel = DiaryListViewModel()
     
     @Environment(\.scenePhase) private var scenePhase
     
@@ -24,8 +19,8 @@ struct DiaryListView: View {
         VStack {
             HStack {
                 Button {
-                    setDay()
-                    date = date.adding(days: -1)
+                    viewModel.setDay(store: store)
+                    viewModel.date = viewModel.date.adding(days: -1)
                 } label: {
                     Image(systemName: "arrow.left")
                 }
@@ -33,13 +28,13 @@ struct DiaryListView: View {
                 .tint(.gray)
                 
                 Button {
-                    setDay()
-                    self.swiftDate = date.date
-                    isShowingDatePicker = true
+                    viewModel.setDay(store: store)
+                    viewModel.swiftDate = viewModel.date.date
+                    viewModel.isShowingDatePicker = true
                 } label: {
-                    Text("\(date.date.formatted(date: .abbreviated, time: .omitted))")
-                        .sheet(isPresented: $isShowingDatePicker) {
-                            TestPicker(calendarDate: $date, date: $swiftDate, isShowing: $isShowingDatePicker)
+                    Text("\(viewModel.date.date.formatted(date: .abbreviated, time: .omitted))")
+                        .sheet(isPresented: $viewModel.isShowingDatePicker) {
+                            TestPicker(calendarDate: $viewModel.date, date: $viewModel.swiftDate, isShowing: $viewModel.isShowingDatePicker)
                                 .presentationDetents([.medium])
                         }
                 }
@@ -47,8 +42,8 @@ struct DiaryListView: View {
                 .tint(.gray)
                 
                 Button {
-                    setDay()
-                    date = date.adding(days: 1)
+                    viewModel.setDay(store: store)
+                    viewModel.date = viewModel.date.adding(days: 1)
                 } label: {
                     Image(systemName: "arrow.right")
                 }
@@ -58,17 +53,17 @@ struct DiaryListView: View {
             .padding(8)
             
             List {
-                ForEach($day.exercises) { $exercise in
-                    DiaryListViewCell(exercise: $exercise, exercises: $day.exercises)
+                ForEach($viewModel.day.exercises) { $exercise in
+                    DiaryListViewCell(exercise: $exercise, exercises: $viewModel.day.exercises)
                 }
                 .onDelete { indexSet in
-                    day.exercises.remove(atOffsets: indexSet)
+                    viewModel.day.exercises.remove(atOffsets: indexSet)
                 }
             }
             
             Button {
-                day.exercises.append(Exercise(id: UUID(), name: "Unnamed Exercise", sets: []))
-                isShowingAddView = true
+                viewModel.day.exercises.append(Exercise(id: UUID(), name: "Unnamed Exercise", sets: []))
+                viewModel.isShowingAddView = true
             } label: {
                 Label("Add Exercise", systemImage: "plus")
             }
@@ -76,36 +71,22 @@ struct DiaryListView: View {
             .buttonBorderShape(.capsule)
             .tint(.green)
         }
-        .onChange(of: date) { _ in
-            getDay()
+        .onChange(of: viewModel.date) { _ in
+            viewModel.getDay(store: store)
         }
         .onChange(of: scenePhase) { phase in
-            if phase == .inactive { setDay() }
+            if phase == .inactive { viewModel.setDay(store: store) }
         }
         .onAppear {
-            getDay()
+            viewModel.getDay(store: store)
         }
 //        .onDisappear{
 //            setDay()
 //        }
-        .fullScreenCover(isPresented: $isShowingAddView) {
-            ExerciseListView(isAdd: true, isShowing: $isShowingAddView, exercises: $day.exercises, exercise: $day.exercises.last!)
+        .fullScreenCover(isPresented: $viewModel.isShowingAddView) {
+            ExerciseListView(isAdd: true, isShowing: $viewModel.isShowingAddView, exercises: $viewModel.day.exercises, exercise: $viewModel.day.exercises.last!)
         }
     }
-    
-    func getDay() {
-        guard let day = store.dict[date] else {
-            store.dict[date] = Day(id: date, exercises: [])
-            return getDay()
-        }
-        
-        self.day = day
-    }
-    
-    func setDay() {
-        store.dict[date] = day
-    }
-    
 }
 
 struct DiaryListView_Previews: PreviewProvider {
