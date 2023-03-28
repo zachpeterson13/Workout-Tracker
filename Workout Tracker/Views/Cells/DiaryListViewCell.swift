@@ -46,7 +46,7 @@ struct DiaryListViewCell: View {
             isShowingEditView = true
         }
         .fullScreenCover(isPresented: $isShowingEditView) {
-            ExerciseListView(isAdd: false, isShowing: $isShowingEditView, exercises: $exercises, exercise: $exercise)
+            ExerciseListView(isShowing: $isShowingEditView, exercises: $exercises, exercise: $exercise)
         }
     }
 }

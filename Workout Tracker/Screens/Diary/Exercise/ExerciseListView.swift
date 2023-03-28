@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ExerciseListView: View {
-    let isAdd: Bool
     @Binding var isShowing: Bool
     @Binding var exercises: [Exercise]
     @Binding var exercise: Exercise
@@ -80,7 +79,7 @@ struct ExerciseListView: View {
 
 struct ExerciseListView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseListView(isAdd: true, isShowing: .constant(true),
+        ExerciseListView(isShowing: .constant(true),
                          exercises: .constant(MockData.exercises),
                          exercise: .constant(MockData.exercises.first!))
     }

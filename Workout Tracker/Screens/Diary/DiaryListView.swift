@@ -17,40 +17,7 @@ struct DiaryListView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Button {
-                    viewModel.setDay(store: store)
-                    viewModel.date = viewModel.date.adding(days: -1)
-                } label: {
-                    Image(systemName: "arrow.left")
-                }
-                .buttonStyle(.borderless)
-                .tint(.gray)
-                
-                Button {
-                    viewModel.setDay(store: store)
-                    viewModel.swiftDate = viewModel.date.date
-                    viewModel.isShowingDatePicker = true
-                } label: {
-                    Text("\(viewModel.date.date.formatted(date: .abbreviated, time: .omitted))")
-                        .sheet(isPresented: $viewModel.isShowingDatePicker) {
-                            TestPicker(calendarDate: $viewModel.date, date: $viewModel.swiftDate, isShowing: $viewModel.isShowingDatePicker)
-                                .presentationDetents([.medium])
-                        }
-                }
-                .buttonStyle(.bordered)
-                .tint(.gray)
-                
-                Button {
-                    viewModel.setDay(store: store)
-                    viewModel.date = viewModel.date.adding(days: 1)
-                } label: {
-                    Image(systemName: "arrow.right")
-                }
-                .buttonStyle(.borderless)
-                .tint(.gray)
-            }
-            .padding(8)
+            DateChanger(viewModel: viewModel, store: store)
             
             List {
                 ForEach($viewModel.day.exercises) { $exercise in
@@ -80,11 +47,8 @@ struct DiaryListView: View {
         .onAppear {
             viewModel.getDay(store: store)
         }
-//        .onDisappear{
-//            setDay()
-//        }
         .fullScreenCover(isPresented: $viewModel.isShowingAddView) {
-            ExerciseListView(isAdd: true, isShowing: $viewModel.isShowingAddView, exercises: $viewModel.day.exercises, exercise: $viewModel.day.exercises.last!)
+            ExerciseListView(isShowing: $viewModel.isShowingAddView, exercises: $viewModel.day.exercises, exercise: $viewModel.day.exercises.last!)
         }
     }
 }
@@ -123,5 +87,47 @@ struct TestPicker: View {
             calendarDate = CalendarDate(date: date)
             isShowing = false
         }
+    }
+}
+
+struct DateChanger: View {
+    @ObservedObject var viewModel: DiaryListViewModel
+    @ObservedObject var store: DayStore
+    
+    var body: some View {
+        HStack {
+            Button {
+                viewModel.setDay(store: store)
+                viewModel.date = viewModel.date.adding(days: -1)
+            } label: {
+                Image(systemName: "arrow.left")
+            }
+            .buttonStyle(.borderless)
+            .tint(.gray)
+            
+            Button {
+                viewModel.setDay(store: store)
+                viewModel.swiftDate = viewModel.date.date
+                viewModel.isShowingDatePicker = true
+            } label: {
+                Text("\(viewModel.date.date.formatted(date: .abbreviated, time: .omitted))")
+                    .sheet(isPresented: $viewModel.isShowingDatePicker) {
+                        TestPicker(calendarDate: $viewModel.date, date: $viewModel.swiftDate, isShowing: $viewModel.isShowingDatePicker)
+                            .presentationDetents([.medium])
+                    }
+            }
+            .buttonStyle(.bordered)
+            .tint(.gray)
+            
+            Button {
+                viewModel.setDay(store: store)
+                viewModel.date = viewModel.date.adding(days: 1)
+            } label: {
+                Image(systemName: "arrow.right")
+            }
+            .buttonStyle(.borderless)
+            .tint(.gray)
+        }
+        .padding(8)
     }
 }
