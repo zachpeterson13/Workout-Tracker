@@ -12,8 +12,12 @@ struct DiaryListView: View {
     @EnvironmentObject var store: DayStore
     
     @State private var date: CalendarDate = CalendarDate.today
+    @State private var swiftDate = Date()
     @State private var day: Day = Day(id: CalendarDate.today, exercises: [])
+    
     @State private var isShowingAddView = false
+    @State private var isShowingDatePicker = false
+    
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
@@ -30,8 +34,14 @@ struct DiaryListView: View {
                 
                 Button {
                     setDay()
+                    self.swiftDate = date.date
+                    isShowingDatePicker = true
                 } label: {
                     Text("\(date.date.formatted(date: .abbreviated, time: .omitted))")
+                        .sheet(isPresented: $isShowingDatePicker) {
+                            TestPicker(calendarDate: $date, date: $swiftDate, isShowing: $isShowingDatePicker)
+                                .presentationDetents([.medium])
+                        }
                 }
                 .buttonStyle(.bordered)
                 .tint(.gray)
@@ -75,9 +85,9 @@ struct DiaryListView: View {
         .onAppear {
             getDay()
         }
-        .onDisappear{
-            setDay()
-        }
+//        .onDisappear{
+//            setDay()
+//        }
         .fullScreenCover(isPresented: $isShowingAddView) {
             ExerciseListView(isAdd: true, isShowing: $isShowingAddView, exercises: $day.exercises, exercise: $day.exercises.last!)
         }
@@ -108,3 +118,29 @@ struct DiaryListView_Previews: PreviewProvider {
 }
 
 
+struct TestPicker: View {
+    @Binding var calendarDate: CalendarDate
+    @Binding var date: Date
+    @Binding var isShowing: Bool
+    
+    var body: some View {
+        VStack {
+            DatePicker("Test", selection: $date, displayedComponents: [.date])
+                .datePickerStyle(.graphical)
+                .padding()
+            
+            Button {
+                isShowing = false
+            } label: {
+                Label("Cancel", systemImage: "xmark")
+            }
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.capsule)
+            .tint(.red)
+        }
+        .onChange(of: date) { newValue in
+            calendarDate = CalendarDate(date: date)
+            isShowing = false
+        }
+    }
+}
