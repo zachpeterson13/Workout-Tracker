@@ -9,9 +9,28 @@ import SwiftUI
 
 @main
 struct Workout_TrackerApp: App {
+    var store = DayStore()
+    
     var body: some Scene {
         WindowGroup {
-            WorkoutTabView()
+            WorkoutTabView() {
+                DayStore.save(dict: store.dict) { result in
+                    if case .failure(let error) = result {
+                        fatalError(error.localizedDescription)
+                    }
+                }
+            }
+            .environmentObject(store)
+            .onAppear {
+                DayStore.load { result in
+                    switch result {
+                    case .success(let dict):
+                        store.dict = dict
+                    case .failure(let error):
+                        fatalError(error.localizedDescription)
+                    }
+                }
+            }
         }
     }
 }

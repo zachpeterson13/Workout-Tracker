@@ -8,29 +8,6 @@
 import Foundation
 import CalendarDate
 
-final class DataManager {
-    static let shared = DataManager()
-    
-    var data = [CalendarDate.today:MockData.sampleDay]
-    
-    private init() {}
-    
-    func getDay(date: CalendarDate, completed: @escaping (Result<Day, Error>) -> Void) {
-        guard let day = data[date] else {
-            data[date] = Day(id: date, exercises: [])
-            getDay(date: date, completed: completed)
-            return
-        }
-        
-        completed(.success(day))
-        return
-    }
-    
-    func setDay(date: CalendarDate, day: Day) {
-        data[date] = day
-    }
-}
-
 struct Day: Codable, Identifiable {
     let id: CalendarDate
     var exercises: [Exercise]

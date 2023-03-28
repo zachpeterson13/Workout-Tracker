@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import CalendarDate
 
 struct WorkoutTabView: View {
+    @Environment(\.scenePhase) private var scenePhase
+    let saveAction: ()->Void
+    
     var body: some View {
         TabView {
             HomeView()
@@ -28,11 +32,14 @@ struct WorkoutTabView: View {
                     Text("Settings")
                 }
         }
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { saveAction() }
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutTabView()
+        WorkoutTabView(saveAction: {})
     }
 }

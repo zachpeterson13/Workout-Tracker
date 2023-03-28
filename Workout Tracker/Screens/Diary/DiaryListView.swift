@@ -9,26 +9,18 @@ import SwiftUI
 import CalendarDate
 
 struct DiaryListView: View {
+    @EnvironmentObject var store: DayStore
+    
     @State private var date: CalendarDate = CalendarDate.today
     @State private var day: Day = Day(id: CalendarDate.today, exercises: [])
     @State private var isShowingAddView = false
-    
-    func getData(date: CalendarDate) {
-        DataManager.shared.getDay(date: date) { result in
-            switch result {
-            case .success(let day):
-                self.day = day
-            case.failure(let error):
-                print(error)
-            }
-        }
-    }
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         VStack {
             HStack {
                 Button {
-                    DataManager.shared.setDay(date: date, day: day)
+                    setDay()
                     date = date.adding(days: -1)
                 } label: {
                     Image(systemName: "arrow.left")
@@ -37,7 +29,7 @@ struct DiaryListView: View {
                 .tint(.gray)
                 
                 Button {
-                    DataManager.shared.setDay(date: date, day: day)
+                    setDay()
                 } label: {
                     Text("\(date.date.formatted(date: .abbreviated, time: .omitted))")
                 }
@@ -45,7 +37,7 @@ struct DiaryListView: View {
                 .tint(.gray)
                 
                 Button {
-                    DataManager.shared.setDay(date: date, day: day)
+                    setDay()
                     date = date.adding(days: 1)
                 } label: {
                     Image(systemName: "arrow.right")
@@ -74,24 +66,44 @@ struct DiaryListView: View {
             .buttonBorderShape(.capsule)
             .tint(.green)
         }
-        .onChange(of: date, perform: { _ in
-            getData(date: date)
-        })
+        .onChange(of: date) { _ in
+            getDay()
+        }
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { setDay() }
+        }
         .onAppear {
-            getData(date: date)
+            getDay()
         }
         .onDisappear{
-            DataManager.shared.setDay(date: date, day: day)
+            setDay()
         }
         .fullScreenCover(isPresented: $isShowingAddView) {
             ExerciseListView(isAdd: true, isShowing: $isShowingAddView, exercises: $day.exercises, exercise: $day.exercises.last!)
         }
     }
+    
+    func getDay() {
+        guard let day = store.dict[date] else {
+            store.dict[date] = Day(id: date, exercises: [])
+            return getDay()
+        }
+        
+        self.day = day
+    }
+    
+    func setDay() {
+        store.dict[date] = day
+    }
+    
 }
 
 struct DiaryListView_Previews: PreviewProvider {
+    static let store = DayStore()
+    
     static var previews: some View {
         DiaryListView()
+            .environmentObject(store)
     }
 }
 

@@ -13,6 +13,7 @@
 		63552BCB29C7A38F003189A8 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BCA29C7A38F003189A8 /* ExerciseListView.swift */; };
 		63552BCE29C7BD97003189A8 /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BCD29C7BD97003189A8 /* NumbersOnly.swift */; };
 		63552BD129C927C4003189A8 /* CalendarDate in Frameworks */ = {isa = PBXBuildFile; productRef = 63552BD029C927C4003189A8 /* CalendarDate */; };
+		63552BD329D24DBB003189A8 /* DayStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BD229D24DBB003189A8 /* DayStore.swift */; };
 		63C3606B29C65D880012A6D1 /* Workout_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3606A29C65D880012A6D1 /* Workout_TrackerApp.swift */; };
 		63C3606D29C65D880012A6D1 /* WorkoutTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3606C29C65D880012A6D1 /* WorkoutTabView.swift */; };
 		63C3606F29C65D890012A6D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C3606E29C65D890012A6D1 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		63552BC829C79C51003189A8 /* ExerciseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListCell.swift; sourceTree = "<group>"; };
 		63552BCA29C7A38F003189A8 /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 		63552BCD29C7BD97003189A8 /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
+		63552BD229D24DBB003189A8 /* DayStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayStore.swift; sourceTree = "<group>"; };
 		63C3606729C65D880012A6D1 /* Workout Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Workout Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C3606A29C65D880012A6D1 /* Workout_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout_TrackerApp.swift; sourceTree = "<group>"; };
 		63C3606C29C65D880012A6D1 /* WorkoutTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTabView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				63C3608229C665DE0012A6D1 /* Exercise.swift */,
+				63552BD229D24DBB003189A8 /* DayStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				63C3606D29C65D880012A6D1 /* WorkoutTabView.swift in Sources */,
 				634C763729C6DFC5007ACC2F /* SetEditView.swift in Sources */,
 				63C3607F29C660BD0012A6D1 /* DiaryListView.swift in Sources */,
+				63552BD329D24DBB003189A8 /* DayStore.swift in Sources */,
 				63C3608329C665DE0012A6D1 /* Exercise.swift in Sources */,
 				63552BC929C79C51003189A8 /* ExerciseListCell.swift in Sources */,
 				63C3606B29C65D880012A6D1 /* Workout_TrackerApp.swift in Sources */,
