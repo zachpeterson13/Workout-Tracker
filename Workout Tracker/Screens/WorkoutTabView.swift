@@ -14,10 +14,10 @@ struct WorkoutTabView: View {
     
     var body: some View {
         TabView {
-            HomeView()
+            CalcView()
                 .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
+                    Image(systemName: "plusminus.circle")
+                    Text("Calculator")
                 }
             
             DiaryListView()
@@ -39,7 +39,10 @@ struct WorkoutTabView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static let store = DayStore()
+    
     static var previews: some View {
         WorkoutTabView(saveAction: {})
+            .environmentObject(store)
     }
 }

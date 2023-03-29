@@ -25,6 +25,7 @@ struct Workout_TrackerApp: App {
                 DayStore.load { result in
                     switch result {
                     case .success(let dict):
+                        print("FINISHED")
                         store.dict = dict
                     case .failure(let error):
                         fatalError(error.localizedDescription)

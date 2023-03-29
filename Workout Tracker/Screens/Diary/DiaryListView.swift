@@ -37,6 +37,7 @@ struct DiaryListView: View {
             .buttonStyle(.bordered)
             .buttonBorderShape(.capsule)
             .tint(.green)
+            .padding()
         }
         .onChange(of: viewModel.date) { _ in
             viewModel.getDay(store: store)
@@ -46,6 +47,9 @@ struct DiaryListView: View {
         }
         .onAppear {
             viewModel.getDay(store: store)
+        }
+        .onDisappear {
+            viewModel.setDay(store: store)
         }
         .fullScreenCover(isPresented: $viewModel.isShowingAddView) {
             ExerciseListView(isShowing: $viewModel.isShowingAddView, exercises: $viewModel.day.exercises, exercise: $viewModel.day.exercises.last!)

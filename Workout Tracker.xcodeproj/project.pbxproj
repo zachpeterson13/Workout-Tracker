@@ -19,7 +19,7 @@
 		63C3606D29C65D880012A6D1 /* WorkoutTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3606C29C65D880012A6D1 /* WorkoutTabView.swift */; };
 		63C3606F29C65D890012A6D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C3606E29C65D890012A6D1 /* Assets.xcassets */; };
 		63C3607229C65D890012A6D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C3607129C65D890012A6D1 /* Preview Assets.xcassets */; };
-		63C3607929C65EAC0012A6D1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3607829C65EAC0012A6D1 /* HomeView.swift */; };
+		63C3607929C65EAC0012A6D1 /* CalcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3607829C65EAC0012A6D1 /* CalcView.swift */; };
 		63C3607D29C65ECA0012A6D1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3607C29C65ECA0012A6D1 /* SettingsView.swift */; };
 		63C3607F29C660BD0012A6D1 /* DiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3607E29C660BD0012A6D1 /* DiaryListView.swift */; };
 		63C3608329C665DE0012A6D1 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3608229C665DE0012A6D1 /* Exercise.swift */; };
@@ -39,7 +39,7 @@
 		63C3606C29C65D880012A6D1 /* WorkoutTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTabView.swift; sourceTree = "<group>"; };
 		63C3606E29C65D890012A6D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63C3607129C65D890012A6D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		63C3607829C65EAC0012A6D1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		63C3607829C65EAC0012A6D1 /* CalcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcView.swift; sourceTree = "<group>"; };
 		63C3607C29C65ECA0012A6D1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		63C3607E29C660BD0012A6D1 /* DiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListView.swift; sourceTree = "<group>"; };
 		63C3608229C665DE0012A6D1 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 			children = (
 				63C3606C29C65D880012A6D1 /* WorkoutTabView.swift */,
 				634C763B29C6EBBF007ACC2F /* Settings */,
-				634C763A29C6EBB8007ACC2F /* Home */,
+				634C763A29C6EBB8007ACC2F /* Calc */,
 				634C763929C6EB9C007ACC2F /* Diary */,
 			);
 			path = Screens;
@@ -80,12 +80,12 @@
 			path = Diary;
 			sourceTree = "<group>";
 		};
-		634C763A29C6EBB8007ACC2F /* Home */ = {
+		634C763A29C6EBB8007ACC2F /* Calc */ = {
 			isa = PBXGroup;
 			children = (
-				63C3607829C65EAC0012A6D1 /* HomeView.swift */,
+				63C3607829C65EAC0012A6D1 /* CalcView.swift */,
 			);
-			path = Home;
+			path = Calc;
 			sourceTree = "<group>";
 		};
 		634C763B29C6EBBF007ACC2F /* Settings */ = {
@@ -271,7 +271,7 @@
 			files = (
 				63C3607D29C65ECA0012A6D1 /* SettingsView.swift in Sources */,
 				63552BCB29C7A38F003189A8 /* ExerciseListView.swift in Sources */,
-				63C3607929C65EAC0012A6D1 /* HomeView.swift in Sources */,
+				63C3607929C65EAC0012A6D1 /* CalcView.swift in Sources */,
 				63552BCE29C7BD97003189A8 /* NumbersOnly.swift in Sources */,
 				63C3606D29C65D880012A6D1 /* WorkoutTabView.swift in Sources */,
 				634C763729C6DFC5007ACC2F /* SetEditView.swift in Sources */,

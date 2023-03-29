@@ -39,6 +39,10 @@ struct ExerciseSet: Codable, Identifiable {
     let id: UUID
     var weight: Int
     var reps: Int
+    
+    var oneRepMax: Double {
+        return Double(weight) / (1.0278 - (0.0278 * Double(reps)))
+    }
 }
 
 struct MockData {
