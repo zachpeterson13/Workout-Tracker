@@ -13,13 +13,18 @@ struct CalcView: View {
     
     let temp = ["Squat", "Bench Press", "Rows", "Shoulder Press"]
     
-    
     var body: some View {
         VStack {
+            Text("Calculated One Rep Max")
+                .font(.title2)
+                .fontWeight(.bold)
+            
             List {
                 ForEach(temp, id: \.self) { name in
                     HStack {
                         Text("\(name)")
+                            .font(.title2)
+                            .fontWeight(.semibold)
                         
                         let test = store.dict.values
                             .flatMap { $0.exercises }
@@ -29,10 +34,20 @@ struct CalcView: View {
                         
                         Spacer()
                         
-                        Text("\(test, specifier: "%.2f") lbs")
+                        VStack(alignment: .trailing) {
+                            Text("\(test, specifier: "%.2f")")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            
+                            Text("lbs")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.gray)
+                        }
                     }
                 }
             }
+            
             
             Button {
                 isShowingCalculator = true
