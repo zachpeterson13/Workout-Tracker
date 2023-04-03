@@ -17,13 +17,13 @@ struct CalcViewCell: View {
                 .font(.title2)
                 .fontWeight(.semibold)
             
+            Spacer()
+            
             let calculatedMax = store.dict.values
                 .flatMap { $0.exercises }
                 .filter { $0.name == name }
                 .flatMap { $0.sets }
                 .reduce(0.0) { max($0, $1.oneRepMax) }
-            
-            Spacer()
             
             VStack(alignment: .trailing) {
                 Text("\(calculatedMax, specifier: "%.2f")")

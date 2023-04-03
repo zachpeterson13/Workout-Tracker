@@ -12,13 +12,11 @@ struct ExerciseListView: View {
     @Binding var exercises: [Exercise]
     @Binding var exercise: Exercise
     
-    let temp = ["Squat", "Bench Press", "Rows", "Shoulder Press", "Unnamed Exercise"]
-    
     var body: some View {
         VStack {
             HStack(alignment: .center) {
                 Picker("Select Workout Type", selection: $exercise.name) {
-                    ForEach(temp, id: \.self) {
+                    ForEach(Exercises.types + ["Unnamed Exercise"], id: \.self) {
                         Text("\($0)")
                     }
                 }

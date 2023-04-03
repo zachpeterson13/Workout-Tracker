@@ -11,8 +11,6 @@ struct CalcView: View {
     @EnvironmentObject private var store: DayStore
     @State private var isShowingCalculator = false
     
-    let temp = ["Squat", "Bench Press", "Rows", "Shoulder Press"]
-    
     var body: some View {
         VStack {
             Text("Calculated One Rep Max")
@@ -21,7 +19,7 @@ struct CalcView: View {
                 .padding()
             
             List {
-                ForEach(temp, id: \.self) { name in
+                ForEach(Exercises.types, id: \.self) { name in
                     CalcViewCell(name: name)
                 }
             }

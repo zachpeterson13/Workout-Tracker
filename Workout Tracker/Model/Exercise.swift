@@ -8,6 +8,10 @@
 import Foundation
 import CalendarDate
 
+struct Exercises {
+    static let types = ["Squat", "Bench Press", "Rows", "Shoulder Press", "Pull ups", "Chest Flys", "Incline Bench Press", "Curls", "Hammer Curls"]
+}
+
 struct Day: Codable, Identifiable {
     let id: CalendarDate
     var exercises: [Exercise]
