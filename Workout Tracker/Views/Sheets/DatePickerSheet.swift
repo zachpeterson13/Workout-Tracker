@@ -20,18 +20,29 @@ struct DatePickerSheet: View {
                 .datePickerStyle(.graphical)
                 .padding()
             
-            Button {
-                isShowing = false
-            } label: {
-                Label("Cancel", systemImage: "xmark")
+            HStack {
+                Button {
+                    isShowing = false
+                } label: {
+                    Label("Cancel", systemImage: "xmark")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+                .tint(.red)
+                
+                Button {
+                    calendarDate = CalendarDate(date: date)
+                    isShowing = false
+                } label: {
+                    Label("Okay", systemImage: "hand.thumbsup.fill")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+                .tint(.green)
             }
-            .buttonStyle(.bordered)
-            .buttonBorderShape(.capsule)
-            .tint(.red)
-        }
-        .onChange(of: date) { newValue in
-            calendarDate = CalendarDate(date: date)
-            isShowing = false
+            .padding()
         }
     }
 }
