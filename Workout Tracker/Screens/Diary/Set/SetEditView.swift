@@ -76,23 +76,3 @@ struct SetEditView_Previews: PreviewProvider {
                     set: .constant(MockData.sampleExercise1.sets.first!))
     }
 }
-
-struct LabelTextField: View {
-    let title: String
-    @Binding var value: String
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(title)
-                .font(.headline)
-            
-            
-            TextField(title, text: $value)
-                .keyboardType(.numberPad)
-                .padding(.all)
-                .background(Color(.quaternarySystemFill))
-                .cornerRadius(5)
-        }
-        .padding(.horizontal, 15)
-    }
-}

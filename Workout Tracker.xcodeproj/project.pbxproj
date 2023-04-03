@@ -11,6 +11,7 @@
 		634C764029C6EC84007ACC2F /* DiaryListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C763F29C6EC84007ACC2F /* DiaryListViewCell.swift */; };
 		6351964529DB63B5007693A8 /* CalculatorSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6351964429DB63B5007693A8 /* CalculatorSheetView.swift */; };
 		6351964729DB6405007693A8 /* CalcViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6351964629DB6405007693A8 /* CalcViewCell.swift */; };
+		6351964B29DB8683007693A8 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6351964A29DB8683007693A8 /* LabelTextField.swift */; };
 		63552BC929C79C51003189A8 /* ExerciseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BC829C79C51003189A8 /* ExerciseListCell.swift */; };
 		63552BCB29C7A38F003189A8 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BCA29C7A38F003189A8 /* ExerciseListView.swift */; };
 		63552BCE29C7BD97003189A8 /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63552BCD29C7BD97003189A8 /* NumbersOnly.swift */; };
@@ -33,6 +34,7 @@
 		634C763F29C6EC84007ACC2F /* DiaryListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListViewCell.swift; sourceTree = "<group>"; };
 		6351964429DB63B5007693A8 /* CalculatorSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorSheetView.swift; sourceTree = "<group>"; };
 		6351964629DB6405007693A8 /* CalcViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcViewCell.swift; sourceTree = "<group>"; };
+		6351964A29DB8683007693A8 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		63552BC829C79C51003189A8 /* ExerciseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListCell.swift; sourceTree = "<group>"; };
 		63552BCA29C7A38F003189A8 /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 		63552BCD29C7BD97003189A8 /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
@@ -112,9 +114,10 @@
 		634C763D29C6EBFF007ACC2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6351964929DB8673007693A8 /* Fields */,
+				6351964829DB8667007693A8 /* Sheets */,
 				634C764129C6ECFA007ACC2F /* Cells */,
 				634C763E29C6EC0D007ACC2F /* Buttons */,
-				6351964429DB63B5007693A8 /* CalculatorSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,6 +154,22 @@
 				634C763629C6DFC5007ACC2F /* SetEditView.swift */,
 			);
 			path = Set;
+			sourceTree = "<group>";
+		};
+		6351964829DB8667007693A8 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				6351964429DB63B5007693A8 /* CalculatorSheetView.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		6351964929DB8673007693A8 /* Fields */ = {
+			isa = PBXGroup;
+			children = (
+				6351964A29DB8683007693A8 /* LabelTextField.swift */,
+			);
+			path = Fields;
 			sourceTree = "<group>";
 		};
 		63552BCC29C7BD84003189A8 /* Utils */ = {
@@ -275,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6351964B29DB8683007693A8 /* LabelTextField.swift in Sources */,
 				63C3607D29C65ECA0012A6D1 /* SettingsView.swift in Sources */,
 				63552BCB29C7A38F003189A8 /* ExerciseListView.swift in Sources */,
 				63C3607929C65EAC0012A6D1 /* CalcView.swift in Sources */,

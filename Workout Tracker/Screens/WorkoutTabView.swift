@@ -26,11 +26,11 @@ struct WorkoutTabView: View {
                     Text("Diary")
                 }
             
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+//            SettingsView()
+//                .tabItem {
+//                    Image(systemName: "gear")
+//                    Text("Settings")
+//                }
         }
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }
