@@ -17,7 +17,7 @@ struct CalcViewCell: View {
                 .font(.title2)
                 .fontWeight(.semibold)
             
-            let test = store.dict.values
+            let calculatedMax = store.dict.values
                 .flatMap { $0.exercises }
                 .filter { $0.name == name }
                 .flatMap { $0.sets }
@@ -26,7 +26,7 @@ struct CalcViewCell: View {
             Spacer()
             
             VStack(alignment: .trailing) {
-                Text("\(test, specifier: "%.2f")")
+                Text("\(calculatedMax, specifier: "%.2f")")
                     .font(.title2)
                     .fontWeight(.semibold)
                 
